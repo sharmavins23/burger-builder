@@ -85,3 +85,9 @@ fn main() {
 
 - Code separation. Splitting up the implementation into different files makes
   things easier to maintain and more readable.
+- Refactored patties, condiments, and etc. out to separate enumerations.
+- Stopped users from adding extra top/bottom buns into the burger.
+    - Rather than doing this as a runtime check, this is implemented as a
+      compile-time _typing_, which stops users' code from compiling if they
+      choose to add a top or bottom bun. Basically, this invalid state of a
+      burger is unreachable.

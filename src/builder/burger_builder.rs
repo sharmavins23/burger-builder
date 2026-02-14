@@ -1,4 +1,7 @@
-use crate::model::burger_component::BurgerComponent;
+use crate::BurgerComponent;
+use crate::BurgerCondiment;
+use crate::BurgerProtein;
+use crate::BurgerTopping;
 
 // ===== Object declaration ====================================================
 
@@ -20,9 +23,24 @@ impl BurgerBuilder {
     }
 
     /// Adds a component to the burger being built.
-    pub fn add_component(mut self, component: BurgerComponent) -> BurgerBuilder {
+    fn add_component(mut self, component: BurgerComponent) -> BurgerBuilder {
         self.components.push(component);
         self
+    }
+
+    /// Adds a condiment to the burger being built.
+    pub fn add_condiment(self, condiment: BurgerCondiment) -> BurgerBuilder {
+        self.add_component(BurgerComponent::Condiment(condiment))
+    }
+
+    /// Adds a protein to the burger being built.
+    pub fn add_protein(self, protein: BurgerProtein) -> BurgerBuilder {
+        self.add_component(BurgerComponent::Protein(protein))
+    }
+
+    /// Adds a topping to the burger being built.
+    pub fn add_topping(self, topping: BurgerTopping) -> BurgerBuilder {
+        self.add_component(BurgerComponent::Topping(topping))
     }
 
     /// Finalizes the burger being built by adding a TopBun as the last
