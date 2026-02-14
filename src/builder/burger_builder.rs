@@ -1,3 +1,4 @@
+use crate::Burger;
 use crate::BurgerComponent;
 use crate::BurgerCondiment;
 use crate::BurgerProtein;
@@ -47,16 +48,11 @@ impl BurgerBuilder {
 
     /// Finalizes the burger being built by adding a TopBun as the last
     /// component.
-    pub fn build(mut self) -> BurgerBuilder {
+    pub fn build(mut self) -> Burger {
         self.components.push(BurgerComponent::TopBun);
-        self
-    }
-
-    /// Displays the components of the built burger.
-    pub fn display(&self) {
-        println!("Burger components for '{}':", self.name);
-        for component in &self.components {
-            println!("{}", component);
+        Burger {
+            components: self.components,
+            name: self.name,
         }
     }
 }

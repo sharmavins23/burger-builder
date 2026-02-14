@@ -15,6 +15,7 @@ mod model;
 
 // * Imports
 use builder::burger_builder::BurgerBuilder;
+use model::burger::Burger;
 use model::burger_component::BurgerComponent;
 use model::burger_condiment::BurgerCondiment;
 use model::burger_protein::BurgerProtein;
