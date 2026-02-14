@@ -80,3 +80,8 @@ fn main() {
     }
 }
 ```
+
+## Features I've Added
+
+- Code separation. Splitting up the implementation into different files makes
+  things easier to maintain and more readable.

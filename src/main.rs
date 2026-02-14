@@ -16,16 +16,18 @@ mod model;
 // * Imports
 use builder::burger_builder::BurgerBuilder;
 use model::burger_component::BurgerComponent;
+use model::burger_condiment::BurgerCondiment;
+use model::burger_protein::BurgerProtein;
+use model::burger_topping::BurgerTopping;
 
 // ===== Driver code ===========================================================
 
 /// Entrypoint to the application.
 fn main() {
     let burger = BurgerBuilder::new()
-        .add_component(BurgerComponent::Patty)
-        .add_component(BurgerComponent::Tomato)
-        .add_component(BurgerComponent::Cheese)
-        .add_component(BurgerComponent::Lettuce)
+        .add_component(BurgerComponent::Protein(BurgerProtein::BeefPatty))
+        .add_component(BurgerComponent::Topping(BurgerTopping::Lettuce))
+        .add_component(BurgerComponent::Condiment(BurgerCondiment::Ketchup))
         .build();
 
     // Print out our burger's configuration
@@ -33,10 +35,15 @@ fn main() {
     for component in burger.components {
         match component {
             BurgerComponent::BottomBun => println!("Bottom Bun"),
-            BurgerComponent::Patty => println!("Patty"),
-            BurgerComponent::Tomato => println!("Tomato"),
-            BurgerComponent::Cheese => println!("Cheese"),
-            BurgerComponent::Lettuce => println!("Lettuce"),
+            BurgerComponent::Protein(p) => match p {
+                BurgerProtein::BeefPatty => println!("Protein: Beef Patty"),
+            },
+            BurgerComponent::Topping(t) => match t {
+                BurgerTopping::Lettuce => println!("Topping: Lettuce"),
+            },
+            BurgerComponent::Condiment(c) => match c {
+                BurgerCondiment::Ketchup => println!("Condiment: Ketchup"),
+            },
             BurgerComponent::TopBun => println!("Top Bun"),
         }
     }
