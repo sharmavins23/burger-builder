@@ -24,15 +24,12 @@ use model::burger_topping::BurgerTopping;
 
 /// Entrypoint to the application.
 fn main() {
-    let burger = BurgerBuilder::new()
+    let burger = BurgerBuilder::new("Classic Burger".to_string())
         .add_protein(BurgerProtein::BeefPatty)
         .add_topping(BurgerTopping::Lettuce)
         .add_condiment(BurgerCondiment::Ketchup)
         .build();
 
     // Print out our burger's configuration
-    println!("Burger components:");
-    for component in burger.components {
-        println!("{}", component);
-    }
+    burger.display();
 }

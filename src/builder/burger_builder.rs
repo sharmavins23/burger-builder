@@ -9,6 +9,7 @@ use crate::BurgerTopping;
 /// burger.
 pub struct BurgerBuilder {
     pub components: Vec<BurgerComponent>,
+    pub name: String,
 }
 
 // ===== Method implementations ================================================
@@ -16,9 +17,10 @@ pub struct BurgerBuilder {
 impl BurgerBuilder {
     /// Creates a new BurgerBuilder instance, starting with a BottomBun as the
     /// first component of the burger.
-    pub fn new() -> BurgerBuilder {
+    pub fn new(name: String) -> BurgerBuilder {
         BurgerBuilder {
             components: vec![BurgerComponent::BottomBun],
+            name,
         }
     }
 
@@ -48,5 +50,13 @@ impl BurgerBuilder {
     pub fn build(mut self) -> BurgerBuilder {
         self.components.push(BurgerComponent::TopBun);
         self
+    }
+
+    /// Displays the components of the built burger.
+    pub fn display(&self) {
+        println!("Burger components for '{}':", self.name);
+        for component in &self.components {
+            println!("{}", component);
+        }
     }
 }
