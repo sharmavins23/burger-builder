@@ -91,3 +91,5 @@ fn main() {
       compile-time _typing_, which stops users' code from compiling if they
       choose to add a top or bottom bun. Basically, this invalid state of a
       burger is unreachable.
+- Return an immutable burger (that cannot be modified once built).
+- Added a scoring system that punishes patty-less burgers and un-sauced burgers.
