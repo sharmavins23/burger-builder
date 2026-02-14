@@ -1,34 +1,25 @@
-struct BurgerBuilder {
-    components: Vec<BurgerComponent>,
-}
+// ===== Lint configuration ====================================================
 
-enum BurgerComponent {
-    BottomBun,
-    Patty,
-    Tomato,
-    Cheese,
-    Lettuce,
-    TopBun,
-}
+// Deny the use of `.expect()`
+#![deny(clippy::expect_used)]
+// Deny the use of `.unwrap()`
+#![deny(clippy::unwrap_used)]
+// Forbid any unsafe{} blocks in the codebase
+#![forbid(unsafe_code)]
 
-impl BurgerBuilder {
-    fn new() -> BurgerBuilder {
-        BurgerBuilder {
-            components: vec![BurgerComponent::BottomBun],
-        }
-    }
+// ===== Imports ===============================================================
 
-    pub fn add_component(mut self, component: BurgerComponent) -> BurgerBuilder {
-        self.components.push(component);
-        self
-    }
+// * Model declarations
+mod builder;
+mod model;
 
-    pub fn build(mut self) -> BurgerBuilder {
-        self.components.push(BurgerComponent::TopBun);
-        self
-    }
-}
+// * Imports
+use builder::burger_builder::BurgerBuilder;
+use model::burger_component::BurgerComponent;
 
+// ===== Driver code ===========================================================
+
+/// Entrypoint to the application.
 fn main() {
     let burger = BurgerBuilder::new()
         .add_component(BurgerComponent::Patty)
